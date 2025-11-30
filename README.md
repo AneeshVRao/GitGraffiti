@@ -1,49 +1,182 @@
 # 🎨 GitGraffiti
 
-With **GitGraffiti**, turn your GitHub contribution graph into a canvas! Create custom patterns, designs, and artworks on your profile.
-A Node.js script that lets you paint commits across time to create stunning visual patterns on GitHub.
+Transform your GitHub contribution graph into a canvas! Create custom patterns, pixel art, and stunning designs on your profile with **GitGraffiti** - the ultimate GitHub contribution graph painter.
 
-## About
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen)](https://nodejs.org/)
 
-**GitGraffiti** helps you create commits on your GitHub profile for any date in the past. Whether you want to fill up your contribution graph, spell out your name, or create cool patterns and pixel art on your contribution calendar.
+## ✨ Features
 
-## Getting Started
+- 🎲 **Random Mode** - Fill your graph with random commits
+- 🎨 **Pattern Mode** - Choose from 8+ predefined patterns (hearts, smiles, waves, mountains, etc.)
+- ✍️ **Text Mode** - Spell out your name or any text on your contribution graph
+- 🎯 **Custom Mode** - Design your own patterns with coordinate arrays
+- 🎚️ **Density Control** - Adjust commit intensity to control the shade of green
+- 📅 **Date Range** - Customize the time period for your commits
+- 🚀 **Easy Configuration** - Simple config file for all settings
 
-Follow these steps to bring your contribution graph to life:
+## 🚀 Quick Start
 
-1. **Clone this repository**
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/AneeshVRao/GitGraffiti.git
 cd GitGraffiti
 ```
 
-3. **Set up your project**
-   Initialize a new Node.js project:
+### 2. Install Dependencies
 
 ```bash
-npm init -y
+npm install
 ```
 
-3. **Install the required npm modules**
-   You'll need a few modules to get everything running smoothly. Install them all with:
+### 3. Configure Your Pattern
+
+Edit `config.js` to customize your contribution graph:
+
+```javascript
+export const config = {
+  mode: 'pattern',  // Options: 'random', 'pattern', 'custom'
+  
+  pattern: {
+    name: 'heart',     // Choose your pattern
+    intensity: 3,      // Commits per cell (1-10)
+    startWeek: 10,     // Starting position
+  },
+};
+```
+
+### 4. Run the Script
 
 ```bash
-npm install moment simple-git random
+node index.js
 ```
 
-4. **Create your commit script**
+## 📋 Available Modes
 
-- Create a JavaScript file to manage your commits.
-- Create a JSON file to store all the commit timestamp data.
+### 🎲 Random Mode
+Fill your contribution graph with random commits across the year.
 
-## Room for Improvement
+```javascript
+mode: 'random',
+random: {
+  numberOfCommits: 100,  // Total commits to make
+  commitsPerDay: 1,      // Commits per day (1-10)
+}
+```
 
-So, you've got the basics down. What's next?
+### 🎨 Pattern Mode
+Choose from predefined patterns:
 
-- **Custom Patterns:** Experiment with different patterns on your contribution graph. Maybe spell out your name or create some cool designs.
-- **Density Control:** Play around with the number of commits per day to adjust the shades of green.
-- **Input Strings:** Convert input strings to X-Y mapped contributions.
+| Pattern | Description |
+|---------|-------------|
+| `heart` | ❤️ Heart shape |
+| `smile` | 😊 Smiley face |
+| `wave` | 🌊 Sine wave pattern |
+| `mountain` | ⛰️ Mountain range |
+| `cross` | ➕ Cross/Plus shape |
+| `checkmark` | ✓ Checkmark |
+| `diagonal` | 📐 Diagonal stripes |
+| `name` | ✍️ Spell out text |
+
+```javascript
+mode: 'pattern',
+pattern: {
+  name: 'heart',        // Pattern name
+  intensity: 3,         // Darkness (1-10)
+  startWeek: 10,       // Horizontal position
+  text: 'HI',          // For 'name' pattern only
+}
+```
+
+### 🎯 Custom Mode
+Create your own pattern using coordinates:
+
+```javascript
+mode: 'custom',
+custom: {
+  coordinates: [
+    [5, 0], [5, 1], [5, 2],  // [week, day]
+    [10, 3],                   // Week: 0-52, Day: 0-6
+    [15, 0], [15, 6],         // Sunday = 0
+  ],
+  intensity: 2,
+}
+```
+
+## ⚙️ Configuration Options
+
+### Date Range
+```javascript
+dateRange: {
+  startDaysAgo: 365,  // Start from 1 year ago
+  endDaysAgo: 0,      // End today (0) or future (negative)
+}
+```
+
+### Advanced Settings
+```javascript
+dataFile: './data.json',     // Data file location
+commitDelay: 100,             // Delay between commits (ms)
+verbose: true,                // Show detailed logs
+```
+
+## 📖 Examples
+
+### Example 1: Heart Pattern
+```javascript
+mode: 'pattern',
+pattern: {
+  name: 'heart',
+  intensity: 5,
+  startWeek: 15,
+}
+```
+
+### Example 2: Spell Your Name
+```javascript
+mode: 'pattern',
+pattern: {
+  name: 'name',
+  text: 'ANEESH',
+  intensity: 4,
+  startWeek: 5,
+}
+```
+
+### Example 3: Dense Random Fill
+```javascript
+mode: 'random',
+random: {
+  numberOfCommits: 250,
+  commitsPerDay: 5,
+}
+```
+
+## 🎨 Creating Custom Patterns
+
+The contribution graph is a 52×7 grid (52 weeks × 7 days). To create custom patterns:
+
+1. Plan your design on graph paper
+2. Map coordinates as `[week, day]` where:
+   - Week: 0-51 (columns, left to right)
+   - Day: 0-6 (rows, Sunday to Saturday)
+3. Add coordinates to `config.custom.coordinates`
+
+**Example - Vertical Line:**
+```javascript
+coordinates: [
+  [10, 0], [10, 1], [10, 2], [10, 3], [10, 4], [10, 5], [10, 6]
+]
+```
+
+## ⚠️ Important Notes
+
+- **Use on a separate repository**: Don't run this on your main projects
+- **GitHub ToS**: This is for educational purposes - use responsibly
+- **Backup**: Always backup your repo before running
+- **Testing**: Test with a small number of commits first
+- **Push manually**: The script auto-pushes; ensure your remote is correct
 
 ## npm Modules Used
 
