@@ -16,6 +16,22 @@
 
 ---
 
+## 📸 Showcase
+
+<div align="center">
+
+### My Contribution Graph Art
+
+![GitHub Contribution Graph](./assets/contribution-graph.png)
+
+*"ANEESH" painted on my 2024 contribution graph using GitGraffiti*
+
+> 💡 **Want to add your own?** Take a screenshot of your GitHub profile's contribution section and add it here!
+
+</div>
+
+---
+
 ## 🌟 Why GitGraffiti?
 
 GitGraffiti turns your GitHub contribution graph into a creative canvas. Whether you want to spell out your name, draw patterns, or create pixel art, this tool makes it simple and fun!
@@ -422,6 +438,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - Inspired by the original concept from [Akshay Saini](https://github.com/akshaymarch7)
+- Motivated by [Fenrir's amazing tutorial](https://www.youtube.com/@Fenrir26) that sparked this journey
 - Thanks to the open-source community for the amazing tools
 - Special thanks to everyone who stars and uses this project!
 
