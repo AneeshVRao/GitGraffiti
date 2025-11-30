@@ -38,6 +38,7 @@ node test.js
 ```
 
 This will show you:
+
 - ✅ Visual preview of your pattern
 - ✅ Number of commits that will be created
 - ✅ Estimated execution time
@@ -49,14 +50,14 @@ Edit `config.test.js` for a small test:
 
 ```javascript
 export const config = {
-  mode: 'pattern',
+  mode: "pattern",
   pattern: {
-    name: 'heart',
-    intensity: 1,  // Low intensity for testing
+    name: "heart",
+    intensity: 1, // Low intensity for testing
     startWeek: 2,
   },
   dateRange: {
-    startDaysAgo: 60,  // Only last 60 days
+    startDaysAgo: 60, // Only last 60 days
   },
 };
 ```
@@ -70,6 +71,7 @@ node index.js
 ### Step 6: Check Your Test Repository
 
 Visit your test repository on GitHub and check:
+
 - Contribution graph shows the pattern
 - Pattern looks as expected
 - Intensity/darkness is correct
@@ -133,19 +135,25 @@ custom: {
 ## ⚠️ Common Issues
 
 ### Issue: "Not a git repository"
+
 **Solution**: Run `git init` in your test directory
 
 ### Issue: "No remote configured"
+
 **Solution**: Add remote with `git remote add origin <your-test-repo-url>`
 
 ### Issue: Pattern doesn't appear on GitHub
-**Solution**: 
+
+**Solution**:
+
 - Wait a few minutes for GitHub to update
 - Check if commits were created: `git log`
 - Verify date range in config
 
 ### Issue: Pattern looks wrong
-**Solution**: 
+
+**Solution**:
+
 - Run `node test.js` to preview
 - Adjust `startWeek` position
 - Check if date range is correct
@@ -191,6 +199,7 @@ commitDelay: 100,  // Slower for debugging
 ## 📧 Need Help?
 
 If you encounter issues:
+
 1. Check the main README.md
 2. Review the pattern preview output
 3. Verify your git setup

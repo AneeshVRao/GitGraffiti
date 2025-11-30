@@ -73,11 +73,13 @@ See [TESTING.md](TESTING.md) for comprehensive testing guide.
 ### Quick Test
 
 1. **Preview your pattern:**
+
    ```bash
    npm run preview
    ```
 
 2. **Check the output:**
+
    - Visual grid preview
    - Commit statistics
    - Git status verification
