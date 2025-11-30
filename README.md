@@ -36,25 +36,61 @@ Edit `config.js` to customize your contribution graph:
 
 ```javascript
 export const config = {
-  mode: 'pattern',  // Options: 'random', 'pattern', 'custom'
-  
+  mode: "pattern", // Options: 'random', 'pattern', 'custom'
+
   pattern: {
-    name: 'heart',     // Choose your pattern
-    intensity: 3,      // Commits per cell (1-10)
-    startWeek: 10,     // Starting position
+    name: "heart", // Choose your pattern
+    intensity: 3, // Commits per cell (1-10)
+    startWeek: 10, // Starting position
   },
 };
 ```
 
-### 4. Run the Script
+### 4. Preview Before Running (Recommended!)
 
 ```bash
+npm run preview
+# or
+npm test
+```
+
+This shows you a visual preview of your pattern without creating commits!
+
+### 5. Run the Script
+
+```bash
+npm start
+# or
 node index.js
 ```
+
+## 🧪 Testing
+
+**⚠️ IMPORTANT: Always test on a separate repository first!**
+
+See [TESTING.md](TESTING.md) for comprehensive testing guide.
+
+### Quick Test
+
+1. **Preview your pattern:**
+   ```bash
+   npm run preview
+   ```
+
+2. **Check the output:**
+   - Visual grid preview
+   - Commit statistics
+   - Git status verification
+
+3. **Test on a separate repo:**
+   - Create a test repository on GitHub
+   - Clone and set it up with GitGraffiti
+   - Run with small settings (see `config.test.js`)
 
 ## 📋 Available Modes
 
 ### 🎲 Random Mode
+
 Fill your contribution graph with random commits across the year.
 
 ```javascript
@@ -66,18 +102,19 @@ random: {
 ```
 
 ### 🎨 Pattern Mode
+
 Choose from predefined patterns:
 
-| Pattern | Description |
-|---------|-------------|
-| `heart` | ❤️ Heart shape |
-| `smile` | 😊 Smiley face |
-| `wave` | 🌊 Sine wave pattern |
-| `mountain` | ⛰️ Mountain range |
-| `cross` | ➕ Cross/Plus shape |
-| `checkmark` | ✓ Checkmark |
-| `diagonal` | 📐 Diagonal stripes |
-| `name` | ✍️ Spell out text |
+| Pattern     | Description          |
+| ----------- | -------------------- |
+| `heart`     | ❤️ Heart shape       |
+| `smile`     | 😊 Smiley face       |
+| `wave`      | 🌊 Sine wave pattern |
+| `mountain`  | ⛰️ Mountain range    |
+| `cross`     | ➕ Cross/Plus shape  |
+| `checkmark` | ✓ Checkmark          |
+| `diagonal`  | 📐 Diagonal stripes  |
+| `name`      | ✍️ Spell out text    |
 
 ```javascript
 mode: 'pattern',
@@ -90,6 +127,7 @@ pattern: {
 ```
 
 ### 🎯 Custom Mode
+
 Create your own pattern using coordinates:
 
 ```javascript
@@ -107,6 +145,7 @@ custom: {
 ## ⚙️ Configuration Options
 
 ### Date Range
+
 ```javascript
 dateRange: {
   startDaysAgo: 365,  // Start from 1 year ago
@@ -115,6 +154,7 @@ dateRange: {
 ```
 
 ### Advanced Settings
+
 ```javascript
 dataFile: './data.json',     // Data file location
 commitDelay: 100,             // Delay between commits (ms)
@@ -124,6 +164,7 @@ verbose: true,                // Show detailed logs
 ## 📖 Examples
 
 ### Example 1: Heart Pattern
+
 ```javascript
 mode: 'pattern',
 pattern: {
@@ -134,6 +175,7 @@ pattern: {
 ```
 
 ### Example 2: Spell Your Name
+
 ```javascript
 mode: 'pattern',
 pattern: {
@@ -145,6 +187,7 @@ pattern: {
 ```
 
 ### Example 3: Dense Random Fill
+
 ```javascript
 mode: 'random',
 random: {
@@ -164,10 +207,17 @@ The contribution graph is a 52×7 grid (52 weeks × 7 days). To create custom pa
 3. Add coordinates to `config.custom.coordinates`
 
 **Example - Vertical Line:**
+
 ```javascript
 coordinates: [
-  [10, 0], [10, 1], [10, 2], [10, 3], [10, 4], [10, 5], [10, 6]
-]
+  [10, 0],
+  [10, 1],
+  [10, 2],
+  [10, 3],
+  [10, 4],
+  [10, 5],
+  [10, 6],
+];
 ```
 
 ## ⚠️ Important Notes
@@ -175,8 +225,22 @@ coordinates: [
 - **Use on a separate repository**: Don't run this on your main projects
 - **GitHub ToS**: This is for educational purposes - use responsibly
 - **Backup**: Always backup your repo before running
-- **Testing**: Test with a small number of commits first
+- **Testing**: **ALWAYS run `npm run preview` first!** See [TESTING.md](TESTING.md)
 - **Push manually**: The script auto-pushes; ensure your remote is correct
+- **Test repository**: Create a separate test repo before using on your profile
+
+## 🎯 Quick Commands
+
+```bash
+# Preview pattern (safe, no commits)
+npm run preview
+
+# Run the actual script
+npm start
+
+# View test configuration
+cat config.test.js
+```
 
 ## npm Modules Used
 

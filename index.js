@@ -20,13 +20,13 @@ const git = simpleGit();
  */
 const createCommit = async (date, callback) => {
   const data = { date: date };
-  
+
   jsonfile.writeFile(config.dataFile, data, async (err) => {
     if (err) {
       console.error("Error writing file:", err);
       return;
     }
-    
+
     try {
       await git.add([config.dataFile]);
       await git.commit(date, { "--date": date });
@@ -46,10 +46,12 @@ const createCommit = async (date, callback) => {
 const makePatternCommits = async (coordinates, intensity) => {
   let commitsMade = 0;
   const totalCommits = coordinates.length * intensity;
-  
-  console.log(`\n🎨 Creating pattern with ${coordinates.length} cells and intensity ${intensity}`);
+
+  console.log(
+    `\n🎨 Creating pattern with ${coordinates.length} cells and intensity ${intensity}`
+  );
   console.log(`📊 Total commits to make: ${totalCommits}\n`);
-  
+
   for (const [week, day] of coordinates) {
     for (let i = 0; i < intensity; i++) {
       const date = moment()
@@ -58,22 +60,24 @@ const makePatternCommits = async (coordinates, intensity) => {
         .add(day, "d")
         .add(i, "hours") // Add hours to create multiple commits same day
         .format();
-      
+
       await new Promise((resolve) => {
         createCommit(date, () => {
           commitsMade++;
           if (config.verbose) {
-            process.stdout.write(`Progress: ${commitsMade}/${totalCommits} commits\r`);
+            process.stdout.write(
+              `Progress: ${commitsMade}/${totalCommits} commits\r`
+            );
           }
           setTimeout(resolve, config.commitDelay);
         });
       });
     }
   }
-  
+
   console.log(`\n\n✅ Pattern complete! Created ${commitsMade} commits.`);
   console.log("🚀 Pushing to GitHub...\n");
-  
+
   await git.push();
   console.log("✨ All done! Check your GitHub profile!");
 };
@@ -84,22 +88,26 @@ const makePatternCommits = async (coordinates, intensity) => {
 const makeRandomCommits = async (n, commitsPerDay) => {
   let commitsMade = 0;
   const totalCommits = n * commitsPerDay;
-  
-  console.log(`\n🎲 Creating ${n} random commits with ${commitsPerDay} commits per day`);
+
+  console.log(
+    `\n🎲 Creating ${n} random commits with ${commitsPerDay} commits per day`
+  );
   console.log(`📊 Total commits to make: ${totalCommits}\n`);
-  
+
   const makeCommit = async (remaining) => {
     if (remaining === 0) {
-      console.log(`\n\n✅ Random commits complete! Created ${totalCommits} commits.`);
+      console.log(
+        `\n\n✅ Random commits complete! Created ${totalCommits} commits.`
+      );
       console.log("🚀 Pushing to GitHub...\n");
       await git.push();
       console.log("✨ All done! Check your GitHub profile!");
       return;
     }
-    
+
     const week = random.int(0, 51);
     const day = random.int(0, 6);
-    
+
     for (let i = 0; i < commitsPerDay; i++) {
       const date = moment()
         .subtract(config.dateRange.startDaysAgo, "d")
@@ -107,21 +115,23 @@ const makeRandomCommits = async (n, commitsPerDay) => {
         .add(day, "d")
         .add(i, "hours")
         .format();
-      
+
       await new Promise((resolve) => {
         createCommit(date, () => {
           commitsMade++;
           if (config.verbose) {
-            process.stdout.write(`Progress: ${commitsMade}/${totalCommits} commits\r`);
+            process.stdout.write(
+              `Progress: ${commitsMade}/${totalCommits} commits\r`
+            );
           }
           setTimeout(resolve, config.commitDelay);
         });
       });
     }
-    
+
     await makeCommit(remaining - 1);
   };
-  
+
   await makeCommit(n);
 };
 
@@ -140,10 +150,16 @@ const main = async () => {
   console.log("\n" + "=".repeat(50));
   console.log("🎨 GitGraffiti - GitHub Contribution Graph Painter");
   console.log("=".repeat(50) + "\n");
-  
+
   console.log(`📋 Mode: ${config.mode.toUpperCase()}`);
-  console.log(`📅 Date Range: ${config.dateRange.startDaysAgo} days ago to ${config.dateRange.endDaysAgo === 0 ? 'today' : config.dateRange.endDaysAgo + ' days ago'}`);
-  
+  console.log(
+    `📅 Date Range: ${config.dateRange.startDaysAgo} days ago to ${
+      config.dateRange.endDaysAgo === 0
+        ? "today"
+        : config.dateRange.endDaysAgo + " days ago"
+    }`
+  );
+
   try {
     switch (config.mode) {
       case "pattern": {
@@ -151,7 +167,7 @@ const main = async () => {
           text: config.pattern.text,
           startWeek: config.pattern.startWeek,
         });
-        
+
         if (pattern) {
           console.log(`🎨 Pattern: ${config.pattern.name}`);
           await makePatternCommits(pattern, config.pattern.intensity);
@@ -164,7 +180,7 @@ const main = async () => {
         }
         break;
       }
-      
+
       case "custom": {
         await makeCustomCommits(
           config.custom.coordinates,
@@ -172,7 +188,7 @@ const main = async () => {
         );
         break;
       }
-      
+
       case "random":
       default: {
         await makeRandomCommits(
