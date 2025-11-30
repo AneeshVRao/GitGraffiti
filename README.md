@@ -1,19 +1,38 @@
+<div align="center">
+
 # 🎨 GitGraffiti
 
-Transform your GitHub contribution graph into a canvas! Create custom patterns, pixel art, and stunning designs on your profile with **GitGraffiti** - the ultimate GitHub contribution graph painter.
+### Transform Your GitHub Profile Into Art
+
+*Paint your contribution graph with custom patterns, pixel art, and stunning visual designs*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen)](https://nodejs.org/)
+[![GitHub Stars](https://img.shields.io/github/stars/AneeshVRao/GitGraffiti?style=social)](https://github.com/AneeshVRao/GitGraffiti)
+
+[Features](#-features) • [Quick Start](#-quick-start) • [Examples](#-examples) • [Documentation](#-documentation)
+
+</div>
+
+---
+
+## 🌟 Why GitGraffiti?
+
+GitGraffiti turns your GitHub contribution graph into a creative canvas. Whether you want to spell out your name, draw patterns, or create pixel art, this tool makes it simple and fun!
 
 ## ✨ Features
 
-- 🎲 **Random Mode** - Fill your graph with random commits
-- 🎨 **Pattern Mode** - Choose from 8+ predefined patterns (hearts, smiles, waves, mountains, etc.)
-- ✍️ **Text Mode** - Spell out your name or any text on your contribution graph
-- 🎯 **Custom Mode** - Design your own patterns with coordinate arrays
-- 🎚️ **Density Control** - Adjust commit intensity to control the shade of green
-- 📅 **Date Range** - Customize the time period for your commits
-- 🚀 **Easy Configuration** - Simple config file for all settings
+| Feature | Description |
+|---------|-------------|
+| 🎲 **Random Mode** | Fill your graph with randomized commits for a natural look |
+| 🎨 **Pattern Library** | 8+ pre-built patterns including hearts, smiles, waves, and mountains |
+| ✍️ **Text Drawing** | Spell out any text with built-in pixel font (A-Z supported) |
+| 🎯 **Custom Designs** | Create your own patterns using coordinate arrays |
+| 🎚️ **Intensity Control** | Adjust commit density to control green shade (1-10 levels) |
+| 📅 **Date Targeting** | Target specific years or date ranges with precision |
+| 🔍 **Safe Preview** | Visualize patterns before creating any commits |
+| 🩹 **Patch Mode** | Fine-tune and fix individual pixels after creation |
+| 🚀 **Zero Config** | Works out-of-the-box with sensible defaults |
 
 ## 🚀 Quick Start
 
@@ -165,38 +184,125 @@ verbose: true,                // Show detailed logs
 
 ## 📖 Examples
 
-### Example 1: Heart Pattern
+### Example 1: Spell Your Name 💚
 
-```javascript
-mode: 'pattern',
-pattern: {
-  name: 'heart',
-  intensity: 5,
-  startWeek: 15,
-}
-```
-
-### Example 2: Spell Your Name
+Perfect for personalizing your profile!
 
 ```javascript
 mode: 'pattern',
 pattern: {
   name: 'name',
-  text: 'ANEESH',
-  intensity: 4,
-  startWeek: 5,
+  text: 'ANEESH',      // Your name
+  intensity: 4,         // Medium-bright green
+  startWeek: 10,        // Centered position
+}
+dateRange: {
+  startDaysAgo: 365,   // Covers full year
 }
 ```
 
-### Example 3: Dense Random Fill
+**Use Case:** Professional profiles, personal branding
+
+---
+
+### Example 2: Heart Pattern ❤️
+
+Show some love on your profile!
+
+```javascript
+mode: 'pattern',
+pattern: {
+  name: 'heart',
+  intensity: 5,         // Bright green
+  startWeek: 20,        // Mid-year placement
+}
+```
+
+**Use Case:** Valentine's Day, creative expression
+
+---
+
+### Example 3: Random Natural Fill 🌿
+
+Create an organic, active-looking contribution graph:
 
 ```javascript
 mode: 'random',
 random: {
-  numberOfCommits: 250,
-  commitsPerDay: 5,
+  numberOfCommits: 200,  // Moderate activity
+  commitsPerDay: 2,      // Natural variation
+}
+dateRange: {
+  startDaysAgo: 365,
 }
 ```
+
+**Use Case:** Making profiles look consistently active
+
+---
+
+### Example 4: Wave Pattern 🌊
+
+Artistic and eye-catching:
+
+```javascript
+mode: 'pattern',
+pattern: {
+  name: 'wave',
+  intensity: 3,
+  startWeek: 0,         // Start from beginning
+}
+```
+
+**Use Case:** Unique visual appeal, standing out
+
+---
+
+### Example 5: Custom Pixel Art 🎮
+
+Create your own designs:
+
+```javascript
+mode: 'custom',
+custom: {
+  coordinates: [
+    // Draw a simple arrow →
+    [10, 3],
+    [11, 3],
+    [12, 3],
+    [13, 3],
+    [13, 2],
+    [13, 4],
+    [14, 1],
+    [14, 5],
+  ],
+  intensity: 4,
+}
+```
+
+**Use Case:** Unique designs, logos, symbols
+
+---
+
+### Example 6: Target Specific Year 📅
+
+Create patterns for past years (great for 2024!):
+
+```javascript
+mode: 'pattern',
+pattern: {
+  name: 'name',
+  text: 'CODE',
+  intensity: 3,
+  startWeek: 15,
+}
+dateRange: {
+  startDaysAgo: 699,    // Jan 1, 2024
+  endDaysAgo: 334,      // Dec 31, 2024
+}
+```
+
+**Use Case:** Historical contributions, year-specific designs
 
 ## 🎨 Creating Custom Patterns
 
@@ -240,22 +346,103 @@ npm run preview
 # Run the actual script
 npm start
 
+# Run patch script for touch-ups
+npm run patch
+
 # View test configuration
 cat config.test.js
 ```
 
-## npm Modules Used
+## 🩹 Patch Mode
 
-- [`moment`](https://www.npmjs.com/package/moment) - Handles date and time manipulation.
-- [`simple-git`](https://www.npmjs.com/package/simple-git) - For easy Git commands.
-- [`random`](https://www.npmjs.com/package/random) - To generate random numbers for the commits.
+After creating your pattern, you can fine-tune specific pixels using the patch script:
 
-## Credits
+1. **Edit `patch.js`** - Add the dates you want to fill
+2. **Run the patch**: `npm run patch`
+3. **Automatic push** - Changes are pushed to GitHub
 
-Created by [Aneesh V Rao](https://github.com/AneeshVRao)
+Perfect for:
+- Fixing missing pixels in letters
+- Smoothing curves
+- Adjusting letter strokes
+- Adding final touches
 
-Inspired by the original concept from [Akshay Saini](https://github.com/akshaymarch7).
+## 📂 Project Structure
+
+```
+GitGraffiti/
+├── index.js           # Main script
+├── config.js          # Configuration file
+├── config.test.js     # Test configuration
+├── patterns.js        # Pattern library
+├── test.js            # Preview/test script
+├── patch.js           # Fine-tuning script
+├── data.json          # Commit data storage
+├── package.json       # Dependencies
+├── README.md          # Documentation
+└── TESTING.md         # Testing guide
+```
+
+## 🛠️ Tech Stack
+
+- **[Node.js](https://nodejs.org/)** - Runtime environment
+- **[moment](https://www.npmjs.com/package/moment)** - Date manipulation
+- **[simple-git](https://www.npmjs.com/package/simple-git)** - Git operations
+- **[jsonfile](https://www.npmjs.com/package/jsonfile)** - JSON file handling
+- **[random](https://www.npmjs.com/package/random)** - Random number generation
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. 🍴 Fork the repository
+2. 🌿 Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
+5. 🔃 Open a Pull Request
+
+**Ideas for contributions:**
+- New pattern designs
+- Additional letter fonts
+- Color intensity algorithms
+- CLI interface
+- Pattern import/export
+- Animation support
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Aneesh V Rao**
+- GitHub: [@AneeshVRao](https://github.com/AneeshVRao)
+- Project: [GitGraffiti](https://github.com/AneeshVRao/GitGraffiti)
+
+## 🙏 Acknowledgments
+
+- Inspired by the original concept from [Akshay Saini](https://github.com/akshaymarch7)
+- Thanks to the open-source community for the amazing tools
+- Special thanks to everyone who stars and uses this project!
+
+## ⭐ Show Your Support
+
+If you found this project helpful or interesting, please consider:
+- ⭐ Starring the repository
+- 🍴 Forking it for your own use
+- 📢 Sharing it with others
+- 🐛 Reporting bugs or suggesting features
 
 ---
 
-⚠️ **Note:** This project is for educational purposes. Be mindful of GitHub's Terms of Service when using contribution graph manipulation tools.
+<div align="center">
+
+### 🎨 Make Your GitHub Profile Stand Out!
+
+**[Get Started](#-quick-start)** • **[View Examples](#-examples)** • **[Read Docs](#-documentation)**
+
+⚠️ **Disclaimer:** This project is for educational and creative purposes. Please use responsibly and be mindful of GitHub's Terms of Service.
+
+Made with ❤️ by [Aneesh V Rao](https://github.com/AneeshVRao)
+
+</div>
